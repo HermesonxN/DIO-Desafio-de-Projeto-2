@@ -33,15 +33,22 @@ public class Dev {
     }
 
     public void inscreverBootCamp(Bootcamp bootCamp){
-
+        this.conteudosInscritos.addAll(bootCamp.getConteudo());
+        bootCamp.getDevsInscritos().add(this);
     }
 
     public void progredir(){
-
+        Optional<Conteudo> conteudo = this.conteudosInscritos.stream().findFirst();
+        if(conteudo.isPresent()){
+            this.conteudosConcluidos.add(conteudo.get());
+            this.conteudosInscritos.remove(conteudo.get());
+        }else{
+            System.err.println("Você não está matriculado em nenhum conteúdo.");
+        }
     }
 
-    public void calcularXP(){
-
+    public double calcularXP(){
+        return this.conteudosConcluidos.stream().mapToDouble(Conteudo :: calcularXP).sum();
     }
 
     @Override
