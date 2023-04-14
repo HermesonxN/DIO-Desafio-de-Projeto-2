@@ -8,6 +8,8 @@ public class Dev {
     private Set<Conteudo> conteudosInscritos = new LinkedHashSet<>();
     private Set<Conteudo> conteudosConcluidos = new LinkedHashSet<>();
 
+    public Dev(){}
+    
     public String getNome(){
         return nome;
     }
@@ -33,7 +35,7 @@ public class Dev {
     }
 
     public void inscreverBootCamp(Bootcamp bootCamp){
-        this.conteudosInscritos.addAll(bootCamp.getConteudo());
+        this.conteudosInscritos.addAll(bootCamp.getConteudos());
         bootCamp.getDevsInscritos().add(this);
     }
 
